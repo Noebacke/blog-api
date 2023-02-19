@@ -20,7 +20,7 @@ const baseSchema = new mongoose.Schema(
             type: String,
             default: uuidv4,
         },
-        // TODO
+        // Good
         owner: {
             type: String,
             ref: "Account",

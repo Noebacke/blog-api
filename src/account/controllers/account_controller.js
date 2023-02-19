@@ -1,6 +1,7 @@
 const Account = require("../models/account");
 const { emailValidator, passwordValidator } = require("../validators");
 const { getUrl } = require("../../../utils/getter");
+const jwt = require("jsonwebtoken");
 
 const deleteAccount = async (req, res) => {
     const { email } = req.body;
@@ -37,7 +38,7 @@ const login = async (req, res) => {
             return res.status(200).json({
                 id: account.id,
                 email: account.email,
-                token: account.generateJwt(),
+                token: account.generateJwt()
             });
         });
     } catch (err) {
@@ -56,9 +57,9 @@ const register = async (req, res) => {
         return res.status(400).json({ error: "Email is invalid" });
     }
 
-    if (!passwordValidator(password)) {
-        return res.status(400).json({ error: "Password is invalid" });
-    }
+    // if (!passwordValidator(password)) {
+    //     return res.status(400).json({ error: "Password is invalid" });
+    // }
 
     const exists = await Account.findOne({ email: email });
     if (exists) {

@@ -7,14 +7,16 @@ const { removeFields } = require("../../../utils/remover");
 
 const createPost = async (req, res) => {
     //TODO
+    console.log(req.params);
     const post = new Post({
         title: req.body.title,
         content: req.body.content,
+        owner: req.params.id,
     });
 
     try {
         await post.save();
-
+        console.log(post);
         res.header("Location", getUrl(req, post.id));
         res.status(201).json({ post: removeFields(post.toObject()) });
     } catch (err) {
@@ -72,11 +74,12 @@ const getById = async (req, res) => {
 const updatePost = async (req, res) => {
     const { id } = req.params;
 
-    //TODO
+    //Good
     const update = {
         title: req.body.title,
         content: req.body.content,
         updatedAt: Date.now(),
+        owner: req.params.owner,
     };
 
     try {

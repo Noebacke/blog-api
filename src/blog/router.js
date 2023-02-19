@@ -21,7 +21,7 @@ router.get("/posts", getAll);
 router.get("/posts/:id", postExistsMiddleware, getById);
 
 // @route   POST /blog/posts
-router.post("/posts", contentBodyMiddleware, createPost);
+router.post("/posts/profile/:id", contentBodyMiddleware, createPost);
 
 // @route   PUT /blog/posts/:id
 router.patch("/posts/:id", postExistsMiddleware, contentBodyMiddleware, updatePost);

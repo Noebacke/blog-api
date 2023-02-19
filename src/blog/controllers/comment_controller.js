@@ -8,9 +8,13 @@ const createComment = async (req, res) => {
     const { id } = req.params;
 
     try {
-        //TODO
-        const comment = new Comment({ ...req.body, id_post: id });
-
+        //Good
+        const comment = new Comment({ 
+            ...req.body, 
+            id_post: id,
+            owner: req.post.owner
+         });
+        console.log(comment); 
         req.post.commentsCount++;
 
         await Promise.all([req.post.save(), comment.save()]);

@@ -14,7 +14,7 @@ const commentSchema = new mongoose.Schema({
         type: String,
         default: uuidv4,
     },
-    // TODO
+    // Good
     id_post: {
         type: String,
         ref: "Post",

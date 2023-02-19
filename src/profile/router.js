@@ -1,32 +1,42 @@
 const router = require("express").Router();
-
-const { createProfile } = require("./controllers/profile_controller");
+const { createProfile,
+        getAllProfiles,
+        updateProfile,
+        deleteOneProfile,
+        deleteAccount,
+        getProfilById,
+        getPostsByProfilId,
+        getCommentsByIdPost } = require("./controllers/profile_controller");
 
 // @route   GET /
-// TODO:  Get authenticated account.profile
-router.get("/", (req, res) => {});
+// Good:  Get all authenticated account.profile
+router.get("/",getAllProfiles);
 
 // @route   POST /
-router.post("/", createProfile);
+router.post("/",createProfile);
 
 // @route   PATCH /
-// TODO:  Update authenticated account.profile
-router.patch("/", (req, res) => {});
+// Good:  Update authenticated account.profile
+router.patch("/:id",updateProfile);
 
 // @route   DELETE /
-// TODO: Delete authenticated account.profile
-router.delete('/', (req, res) => {});
+// Good: Delete authenticated account.profile
+router.delete('/:id',deleteOneProfile);
+// @route   DELETE /
+// Good: Delete authenticated account.profile
+
+router.delete('/',deleteAccount);
 
 // @route   GET /:id
-// TODO: Get a profile by id
-router.get("/:id", (req, res) => {});
+// Good: Get a profile by id
+router.get("/:id",getProfilById);
 
 // @route   GET /:id/posts
-// TODO: Get all posts from a profile
-router.get("/:id/posts", (req, res) => {});
+// Good: Get all posts from a profile
+router.get("/:id/posts",getPostsByProfilId);
 
 // @route   GET /:id/comments
-// TODO: Get all comments from a profile
-router.get("/:id/comments", (req, res) => {});
+// Good: Get all comments from a profile
+router.get("/:id/comments",getCommentsByIdPost);
 
 module.exports = router;
